@@ -75,3 +75,7 @@ button.equals {
 button.equals:hover {
     background-color: #FF7043;
 }
+
+.darker {
+    background-color: #3A3A3A;
+}
