@@ -17,24 +17,23 @@ body {
 
 .calculator {
     background-color: #2C2C2C;
-    height: 400px;
+    height: 500px; /* Increased height to accommodate history */
     border-radius: 15px;
     width: 600px; 
     display: grid;
     gap: 10px; /* Space between display and buttons */
-    grid-template-rows: 150px 100px auto;
+    grid-template-rows: 200px 50px auto; /* Adjusted height: 1st row history, 2nd display, 3rd buttons */
 }
 
 #history {
-    height: 150px;
-    background-color: #3A3A3A;
+    background-color: #4A4A4A;
     color: #E0E0E0;
     font-size: 1.2rem;
     padding: 15px;
     border-radius: 10px;
-    height: 100px; /* Adjust height to match your need */
     overflow-y: auto; /* Scroll when the history gets long */
     border: none;
+    height: 100%; /* Ensure it takes the full space of its grid row */
 }
 
 #display {
@@ -51,14 +50,12 @@ body {
     outline: none;
 }
 
-
 #keys {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr); /* 5 rows to match the button layout */
     gap: 5px;
 }
-
 
 button {
     width: 100%;
@@ -90,4 +87,9 @@ button.equals:hover {
 
 .darker {
     background-color: #3A3A3A;
+}
+
+.darker:hover {
+    background-color: #424242;
+    color: #FFFFFF; 
 }
