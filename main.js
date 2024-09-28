@@ -1,8 +1,29 @@
+export class calculator {
+    constructor() {
+        this.currentValue = '';
+        this.previousValue = '';
+        this.operator = null;
+        this.numbers = [];
+        this.operators = [];
+    }
+
+    handleNumber(num) {
+        this.currentValue += num;
+    }
+
+    handleOperator(op) {
+        this.numbers.push(this.currentValue);
+        this.numbers.push(op);
+        this.currentValue = '';
+    }
+
+    calculate() {
+
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
-    let clear = document.querySelector(".clear");
-    let equal = document.querySelector(".equals");
-    let decimal = document.querySelector(".decimal");
-    let back = document.querySelector(".back");
+    const calculator =  new calculator();
 
     let numbers = document.querySelectorAll(".number");
     let operator = document.querySelectorAll(".operator");
@@ -10,12 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let display = document.querySelector(".display");
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
-        handleNumber(e.target.textContent)
+        calculator.handleNumber(e.target.textContent);
+        display.textContent = currentValue;
     })
 );
     
 })
-
-function handleNumber(num) {
-    console.log(num);
-}
