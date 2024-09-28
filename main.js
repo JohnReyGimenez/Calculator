@@ -1,4 +1,4 @@
-export class calculator {
+class Calculator {
     constructor() {
         this.currentValue = '';
         this.previousValue = '';
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let numbers = document.querySelectorAll(".number");
     let operator = document.querySelectorAll(".operator");
 
-    let display = document.querySelector(".display");
+    let display = document.querySelector("#display");
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     );
 
-    numbers.forEach((operator => operator.addEventListener("click", function(e) {
+    operator.forEach((operator => operator.addEventListener("click", function(e) {
         calculator.handleOperator(e.target.textContent)
     })))
 })
