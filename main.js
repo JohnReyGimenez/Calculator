@@ -32,8 +32,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
-        display.textContent = currentValue;
-    })
-);
-    
+        document.querySelector("#display").textContent = calculator.currentValue;
+        })
+    );
+
+    numbers.forEach((operator => operator.addEventListener("click", function(e) {
+        calculator.handleOperator(e.target.textContent)
+    })))
 })
