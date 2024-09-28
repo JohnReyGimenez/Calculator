@@ -23,7 +23,7 @@ class Calculator {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const calculator =  new calculator();
+    const calculator =  new Calculator();
 
     let numbers = document.querySelectorAll(".number");
     let operator = document.querySelectorAll(".operator");
@@ -33,10 +33,13 @@ document.addEventListener("DOMContentLoaded", function() {
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
         document.querySelector("#display").textContent = calculator.currentValue;
+        console.log("Button clicked:", e.target.textContent);
         })
     );
 
     operator.forEach((operator => operator.addEventListener("click", function(e) {
         calculator.handleOperator(e.target.textContent)
+        console.log("Button clicked:", e.target.textContent);
     })))
 })
+
