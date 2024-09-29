@@ -18,7 +18,30 @@ class Calculator {
     }
 
     calculate() {
+    if (this.numbers.length === 0) return;
 
+    let result = parseFloat(this.numbers[0]);
+
+    for (let i = 0; i < this.operators.length; i++) {
+        const operators = this.operator[i];
+        const nextNumber = parseFloat(this.numbers[i + 1]);
+
+        switch(this.operator) {
+            case '+':
+                result += nextNumber;
+                break;
+            case '-':
+                result -= nextNumber;
+                break;
+            case '*':
+                result *= nextNumber;
+                break;
+            case '/':
+                result /= nextNumber;
+                break;
+            
+        }
+    }
     }
 }
 
