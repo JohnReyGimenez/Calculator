@@ -39,8 +39,10 @@ class Calculator {
             case '/':
                 result /= nextNumber;
                 break;
-            
         }
+        this.currentValue = result.toString();
+        this.numbers = [];
+        this.operators = [];
     }
     }
 }
