@@ -34,7 +34,7 @@ class Calculator {
     if (this.currentValue !== '') {
         this.numbers.push(this.currentValue);
     }
-    
+
     if (this.numbers.length === 0) return;
 
     let result = parseFloat(this.numbers[0]);
@@ -66,11 +66,6 @@ class Calculator {
 
 document.addEventListener("DOMContentLoaded", function() {
     const calculator =  new Calculator();
-
-    let numbers = document.querySelectorAll(".number");
-    let operator = document.querySelectorAll(".operator");
-
-    let display = document.querySelector("#display");
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
