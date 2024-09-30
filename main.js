@@ -30,6 +30,11 @@ class Calculator {
     }
 
     calculate() {
+
+    if (this.currentValue !== '') {
+        this.numbers.push(this.currentValue);
+    }
+    
     if (this.numbers.length === 0) return;
 
     let result = parseFloat(this.numbers[0]);
