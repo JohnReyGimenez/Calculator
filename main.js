@@ -9,12 +9,24 @@ class Calculator {
 
     handleNumber(num) {
         this.currentValue += num;
+        document.querySelector("#display").value = this.currentValue
     }
 
     handleOperator(op) {
+        if (this.currentValue === '' && this.numbers.length === 0) {
+            return;
+        }
+
+        if (this.operators.length > 0 && this.currentValue === '') {
+            this.operators[this.operators.length - 1] = op;
+            return;
+        }
+        
         this.numbers.push(this.currentValue);
-        this.numbers.push(op);
+        this.operators.push(op);
         this.currentValue = '';
+
+        document.querySelector("#display").value = this.numbers.join('') + this.operators.join(' ');
     }
 
     calculate() {
@@ -23,10 +35,10 @@ class Calculator {
     let result = parseFloat(this.numbers[0]);
 
     for (let i = 0; i < this.operators.length; i++) {
-        const operators = this.operator[i];
+        const operators = this.operators[i];
         const nextNumber = parseFloat(this.numbers[i + 1]);
 
-        switch(this.operator) {
+        switch(operators) {
             case '+':
                 result += nextNumber;
                 break;
@@ -57,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
-        document.querySelector("#display").value = calculator.currentValue;
         console.log("Button clicked:", e.target.textContent);
         })
     );
@@ -66,5 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
         calculator.handleOperator(e.target.textContent);
         console.log("Button clicked:", e.target.textContent);
     })))
+    
 })
 
