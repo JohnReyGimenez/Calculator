@@ -9,7 +9,7 @@ class Calculator {
 
     handleNumber(num) {
         this.currentValue += num;
-        document.querySelector("#display").value = this.currentValue
+        this.updateDisplay();
     }
 
     handleOperator(op) {
@@ -19,14 +19,14 @@ class Calculator {
 
         if (this.operators.length > 0 && this.currentValue === '') {
             this.operators[this.operators.length - 1] = op;
+            this.updateDisplay();
             return;
         }
         
         this.numbers.push(this.currentValue);
         this.operators.push(op);
         this.currentValue = '';
-
-        document.querySelector("#display").value = this.numbers.join('') + this.operators.join(' ');
+        this.updateDisplay();
     }
 
     calculate() {
@@ -62,10 +62,31 @@ class Calculator {
         this.operators = [];
     }
     }
+
+    updateDisplay() {
+        let displayValue = '';
+
+        for (let i = 0; i < this.numbers.length; i++) {
+            displayValue += this.numbers[i];
+
+            if (this.operators[i]) {
+                displayValue += this.operators[i];
+            }
+        }
+
+        if (this.currentValue != '') {
+            displayValue += this.currentValue;
+        }
+        
+        document.querySelector("#display").value = displayValue;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     const calculator =  new Calculator();
+
+    let numbers = document.querySelectorAll(".number");
+    let operator = document.querySelectorAll(".operator");
 
     numbers.forEach((number) => number.addEventListener("click", function(e) {
         calculator.handleNumber(e.target.textContent);
