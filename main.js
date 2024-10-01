@@ -103,7 +103,9 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Button clicked:", e.target.textContent); 
     }));
 
-    document.querySelector(".equals").addEventListener("click", function() {
+    document.querySelector(".equals").addEventListener("click", function(e) {
+        console.log("Button clicked:", e.target.textContent); 
+        console.log("result", calculator.calculate())
         calculator.calculate();
     });
 });
