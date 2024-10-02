@@ -33,41 +33,34 @@ class Calculator {
     }
 
     calculate() {
-        // push the last entered number into the numbers array
         if (this.currentValue !== '') {
             this.numbers.push(this.currentValue);
         }
-
+    
         if (this.numbers.length === 0) return;
-
-        // first number becomes the starting point for calculation
-        let result = parseFloat(this.numbers[0]);
-
-        // iterate over operators array for calculation
+    
+        // First, handle multiplication and division (higher precedence)
         for (let i = 0; i < this.operators.length; i++) {
-            const operator = this.operators[i]; // gets  current operator
-            const nextNumber = parseFloat(this.numbers[i + 1]); // gets next number
-
-            switch(operator) {
-                case '+':
-                    result += nextNumber;
-                    break;
-                case '-':
-                    result -= nextNumber;
-                    break;
-                case '*':
-                    result *= nextNumber;
-                    break;
-                case '/':
-                    result /= nextNumber;
-                    break;
+            if (this.operators[i] === '*' || this.operators[i] === '/') {
+                const result = this.operate(this.operators[i], parseFloat(this.numbers[i]), parseFloat(this.numbers[i + 1]));
+                this.numbers.splice(i, 2, result); // Replace the two numbers with the result
+                this.operators.splice(i, 1); // Remove the operator
+                i--; // Adjust the index to account for the removed operator
             }
         }
-
+    
+        // Then handle addition and subtraction
+        let result = parseFloat(this.numbers[0]); // Start with the first number
+        for (let i = 0; i < this.operators.length; i++) {
+            result = this.operate(this.operators[i], result, parseFloat(this.numbers[i + 1]));
+        }
+    
         this.currentValue = result.toString();
         this.numbers = [];
         this.operators = [];
+        this.updateDisplay();
     }
+    
 
     updateDisplay() {
         let displayValue = '';
