@@ -128,9 +128,13 @@ class Calculator {
 
     back() {
         if (this.currentValue.length > 0) {
-            this.currentValue = this.currentValue.splice(0, -1);
-            this.updateDisplay();
+            this.currentValue = this.currentValue.slice(0, -1);
         }
+        else if (this.operators.length > 0 && this.numbers.length > 0) {
+            this.operators.pop();
+            this.currentValue = this.numbers.pop();
+        }
+        this.updateDisplay();
     }
 }
 
@@ -155,8 +159,8 @@ document.addEventListener("DOMContentLoaded", function() {
         calculator.clear(); 
     });
 
-    document.querySelector(".back").addEventListener("click", function {
-        calculator.back
-    })
+    document.querySelector(".back").addEventListener("click", function() {
+        calculator.back();
+    });
 });
 
