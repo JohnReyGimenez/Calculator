@@ -24,6 +24,17 @@ class Calculator {
         this.currentValue = '';
         this.updateDisplay();
     }
+
+    handleDecimal() {
+        if (!this.currentValue.includes('.')) {
+            if (this.currentValue === '') {
+                this.currentValue = '0.';
+            } else {
+                this.currentValue += '.';
+            }
+            this.updateDisplay();
+        }
+    }
     
     // convert x and ÷ for calculation
     convertOperator(op) {
@@ -172,6 +183,10 @@ document.addEventListener("DOMContentLoaded", function() {
     
     document.querySelector(".percentage").addEventListener("click", function() {
         calculator.percentage();
+    })
+
+    this.documentElement.querySelector(".decimal").addEventListener("click", function() {
+        calculator.handleDecimal();
     })
 });
 
