@@ -25,9 +25,9 @@ class Calculator {
         this.updateDisplay();
     }
     
-    // Convert '×' and '÷' to '*' and '/' for calculation
+    // convert x and ÷ for calculation
     convertOperator(op) {
-        if (op === '×') return '*';
+        if (op === 'x') return '*';
         if (op === '÷') return '/';
         return op;
     }
@@ -46,7 +46,7 @@ class Calculator {
                 this.numbers[i] = result;
                 this.numbers.splice(i + 1, 1);
                 this.operators.splice(i, 1);
-                i--;  // Recheck the current index
+                i--;  
             }
         }
     
@@ -83,7 +83,7 @@ class Calculator {
     operate(operator, number1, number2) {
         switch (operator) {
             case '*':
-                return this.multiply(number1, number2);  // Use 'this' to call the class methods
+                return this.multiply(number1, number2);  
             case '/':
                 return this.divide(number1, number2);
             case '+':
@@ -101,7 +101,7 @@ class Calculator {
         for (let i = 0; i < this.numbers.length; i++) {
             displayValue += this.numbers[i];
             if (this.operators[i]) {
-                displayValue += this.operators[i];
+                displayValue += this.convertForDisplay(this.operators[i]);
             }
         }
 
@@ -112,7 +112,13 @@ class Calculator {
         document.querySelector("#display").value = displayValue;
     }
 
-    // Clear function to reset the calculator
+    // convert * & / back
+    convertForDisplay() {
+        if (op === '*') return 'x';
+        if (op === '/') return '÷';
+        return op;
+    }
+
     clear() {
         this.currentValue = '';
         this.numbers = [];
@@ -139,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.querySelector(".clear").addEventListener("click", function() {
-        calculator.clear();  // Call the clear function when clear button is clicked
+        calculator.clear(); 
     });
 });
 
