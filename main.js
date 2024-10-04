@@ -76,7 +76,7 @@ class Calculator {
     }
 
     divide(number1, number2) {
-        if (number2 === 0) return 'Error';
+        if (number2 === 0) return NaN;
         return parseFloat(number1) / parseFloat(number2);
     }
 
@@ -113,7 +113,7 @@ class Calculator {
     }
 
     // convert * & / back
-    convertForDisplay() {
+    convertForDisplay(op) {
         if (op === '*') return 'x';
         if (op === '/') return '÷';
         return op;
