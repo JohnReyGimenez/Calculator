@@ -136,6 +136,13 @@ class Calculator {
         }
         this.updateDisplay();
     }
+
+    percentage() {
+        if (this.currentValue !== '') {
+            this.currentValue = (parseFloat(this.currentValue) / 100).toString();
+            this.updateDisplay();
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -162,5 +169,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".back").addEventListener("click", function() {
         calculator.back();
     });
+    
+    document.querySelector(".percentage").addEventListener("click", function() {
+        calculator.percentage();
+    })
 });
 
