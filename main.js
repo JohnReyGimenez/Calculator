@@ -125,6 +125,13 @@ class Calculator {
         this.operators = [];
         document.querySelector("#display").value = '';
     }
+
+    back() {
+        if (this.currentValue.length > 0) {
+            this.currentValue = this.currentValue.splice(0, -1);
+            this.updateDisplay();
+        }
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -147,5 +154,9 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector(".clear").addEventListener("click", function() {
         calculator.clear(); 
     });
+
+    document.querySelector(".back").addEventListener("click", function {
+        calculator.back
+    })
 });
 
