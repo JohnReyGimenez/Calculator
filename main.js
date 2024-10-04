@@ -123,7 +123,7 @@ class Calculator {
         this.currentValue = '';
         this.numbers = [];
         this.operators = [];
-        this.updateDisplay();
+        document.querySelector("#display").value = '';
     }
 }
 
