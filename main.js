@@ -4,6 +4,7 @@ class Calculator {
         this.operator = null;
         this.numbers = [];
         this.operators = [];
+        this.history = new History();
     }
 
     handleNumber(num) {
@@ -72,6 +73,9 @@ class Calculator {
         this.numbers = [];
         this.operators = [];
         this.updateDisplay();
+
+        this.history.addEntry(`${this.numbers.join(' ')} = ${this.currentValue}`); 
+        this.history.render();
     }
     
     add(number1, number2) {
@@ -135,6 +139,7 @@ class Calculator {
         this.numbers = [];
         this.operators = [];
         document.querySelector("#display").value = '';
+        this.history.clear();
     }
 
     back() {
@@ -156,6 +161,32 @@ class Calculator {
     }
 }
 
+class History {
+    constructor() {
+        this.history = [];
+    }
+    
+    addEntry(entry) {
+        this.history.unshift(entry);
+        if (this.history.length > 10) {
+            this.history.pop();
+        }
+    }
+    render() {
+        const historyDiv = document.querySelector("#history");
+        historyDiv.innerHTML = '';
+        this.history.forEach(entry => {
+            const p = document.createElement('p');
+            p.textContent = entry;
+            historyDiv.appendChild(p)
+        });
+    }
+    
+    clear() {
+        this.history = [];
+        this.render();
+    }
+}
 document.addEventListener("DOMContentLoaded", function() {
     const calculator = new Calculator();
 
