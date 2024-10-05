@@ -225,5 +225,39 @@ document.addEventListener("DOMContentLoaded", function() {
     this.documentElement.querySelector(".decimal").addEventListener("click", function() {
         calculator.handleDecimal();
     })
+
+    document.addEventListener("keydown", function(e) {
+        const key = e.key;
+
+        if (!isNaN(key)) {
+            calculator.handleNumber(key);
+        }
+
+        if (key === '+' || key === '-' || key === '*' || key === '/') {
+            calculator.handleOperator(key);
+        }
+
+        if (key === '.') {
+            calculator.handleDecimal();
+        }
+
+        if (key === 'Enter') {
+            e.preventDefault(); 
+            calculator.calculate();
+        }
+
+        if (key === 'Backspace') {
+            e.preventDefault(); 
+            calculator.back();
+        }
+
+        if (key === 'Escape') {
+            calculator.clear();
+        }
+
+        if (key === '%') {
+            calculator.percentage();
+        }
+    });
 });
 
