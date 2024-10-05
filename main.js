@@ -49,8 +49,13 @@ class Calculator {
             this.numbers.push(this.currentValue);
         }
         if (this.numbers.length === 0) return;
+
+        let operationString = this.numbers[0]; 
+        for (let i = 0; i < this.operators.length; i++) {
+        operationString += ` ${this.convertForDisplay(this.operators[i])} ${this.numbers[i + 1]}`; // Append operator and number
+    }
     
-        // First pass: Handle '*' and '/'
+        // * and /
         for (let i = 0; i < this.operators.length; i++) {
             const operator = this.operators[i];
             if (operator === '*' || operator === '/') {
@@ -62,8 +67,9 @@ class Calculator {
             }
         }
     
-        // Second pass: Handle '+' and '-'
+        // + and -
         let result = parseFloat(this.numbers[0]);
+
         for (let i = 0; i < this.operators.length; i++) {
             const operator = this.operators[i];
             result = this.operate(operator, result, parseFloat(this.numbers[i + 1]));
@@ -74,7 +80,7 @@ class Calculator {
         this.operators = [];
         this.updateDisplay();
 
-        this.history.addEntry(`${this.numbers.join(' ')} = ${this.currentValue}`); 
+        this.history.addEntry(`${operationString} = ${this.currentValue}`); 
         this.history.render();
     }
     
