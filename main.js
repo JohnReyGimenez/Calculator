@@ -222,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function() {
         calculator.percentage();
     })
 
-    this.documentElement.querySelector(".decimal").addEventListener("click", function() {
+    document.querySelector(".decimal").addEventListener("click", function() {
         calculator.handleDecimal();
     })
 
